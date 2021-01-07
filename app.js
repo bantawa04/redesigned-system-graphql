@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const helmet = require("helmet");
 const compression = require("compression");
+const cors = require("cors");
 const { graphqlHTTP } = require("express-graphql");
 
 const graphqlSchema = require("./graqphql/schema");
