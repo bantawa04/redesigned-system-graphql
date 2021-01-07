@@ -1,7 +1,6 @@
 //Import Packages
 const express = require("express");
 const bodyParser = require("body-parser");
-const helmet = require("helmet");
 const compression = require("compression");
 const cors = require("cors");
 const { graphqlHTTP } = require("express-graphql");
@@ -15,9 +14,8 @@ const app = express();
 //Import routes
 
 //Middleware
-app.use(cors());
-app.use(helmet());
 app.use(compression());
+app.use(cors());
 app.use(bodyParser.json());
 
 //Implement Routes
@@ -26,7 +24,7 @@ app.use(
   graphqlHTTP({
     schema: graphqlSchema,
     rootValue: graphqlResolver,
-    graphiql: true,
+    // graphiql: true,
     customFormatErrorFn(err) {
       if (!err.originalError) {
         return err;
