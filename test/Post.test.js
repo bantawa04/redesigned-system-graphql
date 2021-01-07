@@ -93,7 +93,7 @@ describe("Post API endpoint test", function () {
       .send({
         query: `
         {
-          posts(n:10) {
+          getPosts(n:10) {
             posts {
               id
               title

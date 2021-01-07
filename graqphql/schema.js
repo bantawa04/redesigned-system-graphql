@@ -92,8 +92,8 @@ module.exports = buildSchema(`
     }
 
     type RootQuery {
-        posts(n: Int): PostData!
-        post(id: Int!): Post!
+        getPosts(n: Int): PostData!
+        getPost(id: Int!): Post!
         getPost(id: Int!): Post!
 
         getTodo(id: Int!): Todo!
