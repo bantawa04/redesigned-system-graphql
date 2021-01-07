@@ -40,7 +40,7 @@ module.exports = {
     return post;
   },
 
-  posts: async function ({ n }, req) {
+  getPosts: async function ({ n }, req) {
     const posts = [];
     if (n) {
       if (n > 200) {
