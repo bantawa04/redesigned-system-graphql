@@ -60,7 +60,7 @@ describe("Post API endpoint test", function () {
       .send({
         query: `
         {
-          posts{
+          getPosts{
             posts {
               id
               title
@@ -77,10 +77,10 @@ describe("Post API endpoint test", function () {
       .end(function (err, res) {
         if (err) done(err);
         expect(res.status).to.equal(200);
-        expect(res.body.data.posts.posts).to.be.an("array");
-        expect(res.body.data.posts.posts).to.have.lengthOf(200);
+        expect(res.body.data.getPosts.posts).to.be.an("array");
+        expect(res.body.data.getPosts.posts).to.have.lengthOf(200);
         console.log("Length of posts array (200)");
-        console.log(res.body.data.posts.posts.length);
+        console.log(res.body.data.getPosts.posts.length);
         // console.log(res);
         done();
       });
@@ -110,8 +110,8 @@ describe("Post API endpoint test", function () {
       .end(function (err, res) {
         if (err) done(err);
         expect(res.status).to.equal(200);
-        expect(res.body.data.posts.posts).to.be.an("array");
-        expect(res.body.data.posts.posts).to.have.lengthOf(10);
+        expect(res.body.data.getPosts.posts).to.be.an("array");
+        expect(res.body.data.getPosts.posts).to.have.lengthOf(10);
         done();
       });
   });

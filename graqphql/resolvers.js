@@ -122,7 +122,7 @@ module.exports = {
     const todo = {
       id: Math.floor(Math.random() * 201),
       title: todoInput.title,
-      status: faker.random.boolean(),
+      status: todoInput.status,
       created_at: faker.date.recent(),
     };
 
