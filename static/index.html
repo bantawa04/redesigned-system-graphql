@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphql json api</title>
+</head>
+
+<body>
+    <center>
+        <h1 id="posts">Posts</h1>
+        <h2 id="get-all-posts">Get all posts</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+    {
+        getPosts{
+            posts {
+                id
+                title
+                content
+                image
+                author_id
+                created_at
+                updated_at
+            }
+        }
+    }`
+};
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+    method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+    headers: {
+    Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <blockquote>
+            <p>Returns 200 posts</p>
+        </blockquote>
+        <h2 id="get-fixed-no-post">Get fixed no. post</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+    {
+        getPosts (n:<span class="hljs-number">5</span>){
+            posts {
+                id
+                title
+                content
+                image
+                author_id
+                created_at
+                updated_at
+            }
+        }
+    }`
+};
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+    method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+    headers: {
+    Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="get-single-product">Get single product</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:`
+    {
+        getPost(id:<span class="hljs-number">5</span>){
+        id
+        title
+        content
+        image
+        author_id
+        created_at
+        updated_at
+    }
+}`
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+    method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+    headers: {
+    Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="create-product">Create product</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+        mutation{
+            createPost(postInput:{
+            title: <span class="hljs-string">"Post title from graphql"</span>,
+            content: <span class="hljs-string">"Content from graphql"</span>
+        }){id title content created_at }
+        }`
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+headers: {
+        Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="delete-product">Delete product</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+        mutation{
+        deletePost(id: <span class="hljs-number">5</span>)
+    }`,
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+headers: {
+Accept:  <span class="hljs-string">"application/json"</span>,
+<span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+},
+body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="update-product">Update product</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+        mutation {
+            updatePost(id: <span class="hljs-number">5</span>, postInput: {title: <span class="hljs-string">"Updated Title"</span>, content: <span class="hljs-string">"Updated Content"</span>}) {
+                id
+                title
+                content
+            }
+    }`
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+headers: {
+Accept:  <span class="hljs-string">"application/json"</span>,
+    <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+},
+body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h1 id="products">Products</h1>
+        <h2 id="get-all-products">Get all products</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+    {
+        getProducts {
+            products {
+                id
+                name
+                price
+                description
+            }
+      }
+    }
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+headers: {
+Accept:  <span class="hljs-string">"application/json"</span>,
+    <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+},
+body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <blockquote>
+            <p>Returns 200 products</p>
+        </blockquote>
+        <h2 id="get-fixed-no-users">Get fixed no. users</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+    {
+        getProducts (n:<span class="hljs-number">10</span>) {
+            products {
+                id
+                name
+                price
+                description
+            }
+        }
+    }`
+};
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+    method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+    headers: {
+    Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="get-single-product">Get single product</h2>
+        <pre><code>const  graphqlQuery  = {
+query:  `
+    {
+        getProduct(id: <span class="hljs-number">54</span>) {id name description price category}
+    }`,
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+    method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+    headers: {
+    Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="create-product">Create product</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+        mutation{
+            createProduct(
+                productInput: {
+                    name: <span class="hljs-string">"Iphone 13"</span>,
+                    price: <span class="hljs-number">1299</span>,
+                    description: <span class="hljs-string">" Latest Iphone"</span>
+                }) {
+                    name
+                    price
+                    description
+                    }
+                }`
+    };
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+headers: {
+        Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="delete-product">Delete product</h2>
+        <pre><code>const  graphqlQuery  = {
+query:  `
+    mutation{deleteProduct(id: <span class="hljs-number">64</span>)}`
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+headers: {
+Accept:  <span class="hljs-string">"application/json"</span>,
+<span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+},
+body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="update-product">Update product</h2>
+        <pre><code>const  graphqlQuery  = {
+<span class="hljs-symbol">query:</span>  `
+    <span class="hljs-class">mutation </span>{
+        updateProduct(
+<span class="hljs-symbol">            id:</span> <span class="hljs-number">25</span>, 
+<span class="hljs-symbol">            productInput:</span> {
+<span class="hljs-symbol">                name:</span> <span class="hljs-string">"One Plus 9"</span>, 
+<span class="hljs-symbol">                price:</span> <span class="hljs-number">899</span>, 
+<span class="hljs-symbol">                description:</span> <span class="hljs-string">"Updated Content"</span>, 
+<span class="hljs-symbol">                category:</span> <span class="hljs-string">"Mobile"</span>
+            }) {
+            id
+            name
+            price
+            category
+            }
+    }`,
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+<span class="hljs-symbol">method:</span>  <span class="hljs-string">"POST"</span>,
+<span class="hljs-symbol">headers:</span> {
+<span class="hljs-symbol">Accept:</span>  <span class="hljs-string">"application/json"</span>,
+    <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+},
+<span class="hljs-symbol">body:</span>  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h1 id="todo">Todo</h1>
+        <h2 id="get-all-todos">Get all todos</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+        {
+        getTodos {
+            todos {
+                id
+                title
+                status
+            }
+        }
+    }`
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+headers: {
+Accept:  <span class="hljs-string">"application/json"</span>,
+    <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+},
+body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <blockquote>
+            <p>Returns 200 todos</p>
+        </blockquote>
+        <h2 id="get-fixed-no-todos">Get fixed no. todos</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+    {
+        getTodos (n:<span class="hljs-number">15</span>) {
+        todos {
+        id
+        title
+        status
+        }
+    }
+}`
+};
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+    method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+    headers: {
+    Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="get-single-todo">Get single todo</h2>
+        <pre><code>const  graphqlQuery  = {
+    query:  `
+    {
+        getTodo(id: <span class="hljs-number">156</span>){ id title status}
+    }`
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+    method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+    headers: {
+    Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="create-todo">Create todo</h2>
+        <pre><code>const  graphqlQuery  = {
+query:  `<span class="javascript">
+mutation{
+    createTodo(todoInput:{
+    <span class="hljs-attr">title</span>:<span class="hljs-string">"Todo graphql title"</span>, 
+    <span class="hljs-attr">status</span>: <span class="hljs-literal">false</span>
+    })
+    {id title status}
+}</span>`
+};
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"POST"</span>,
+headers: {
+        Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(response)</span> =&gt;</span>  response.json())
+.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(json)</span> =&gt;</span>  <span class="hljs-built_in">console</span>.log(json));
+</code></pre>
+        <h2 id="delete-todo">Delete todo</h2>
+        <pre><code>const  graphqlQuery  = {
+query:  `
+    mutation{
+        deleteTodo(id: <span class="hljs-number">15</span>)
+    }`
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"<span class="hljs-keyword">POST</span>"</span>,
+headers: {
+Accept:  <span class="hljs-string">"application/json"</span>,
+<span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+},
+body:  JSON.stringify(graphqlQuery),
+})
+.then((response) =&gt;  response.json())
+.then((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="update-todo">Update todo</h2>
+        <pre><code>const  graphqlQuery  = {
+query:  `<span class="javascript">
+mutation{
+    updateTodo(id: <span class="hljs-number">5</span>, <span class="hljs-attr">todoInput</span>:{
+        <span class="hljs-attr">title</span>:<span class="hljs-string">"Todo title updated"</span>,
+        <span class="hljs-attr">status</span>: <span class="hljs-literal">true</span>
+    }) {
+        id
+        title
+        status
+    }
+}</span>`
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"POST"</span>,
+headers: {
+Accept:  <span class="hljs-string">"application/json"</span>,
+    <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+},
+body:  JSON.stringify(graphqlQuery),
+})
+.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(response)</span> =&gt;</span>  response.json())
+.<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">(json)</span> =&gt;</span>  <span class="hljs-built_in">console</span>.log(json));
+</code></pre>
+        <h1 id="user">User</h1>
+        <h2 id="get-all-users">Get all users</h2>
+        <pre><code>const  graphqlQuery  = {
+query:  `
+{
+ getUsers{
+    users {
+        id
+        name
+        email
+        username
+        avatar
+        phone
+        address {
+            street
+            suite
+            city    
+            zip
+            geo {
+                lat
+                lng
+            }
+        }
+        company {
+            name
+            catchPhrase
+            email
+            website
+        address {
+            street
+            suite
+            city
+            zip
+        geo {
+            lat
+            lng
+        }
+       }
+      }
+     }
+   }
+}`,
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+method:  <span class="hljs-string">"POST"</span>,
+headers: {
+Accept:  <span class="hljs-string">"application/json"</span>,
+    <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+},
+body:  JSON.stringify(graphqlQuery),
+})
+.<span class="hljs-keyword">then</span>((response) =&gt;  response.json())
+.<span class="hljs-keyword">then</span>((json) =&gt;  console.log(json));
+</code></pre>
+        <blockquote>
+            <p>Returns 200 todos</p>
+        </blockquote>
+        <h2 id="get-fixed-no-users">Get fixed no. users</h2>
+        <pre><code>const  graphqlQuery  = {
+query:  `
+{
+ getUsers(n: <span class="hljs-number">10</span>){
+    users {
+        id
+        name
+        email
+        username
+        avatar
+        phone
+        address {
+            street
+            suite
+            city    
+            zip
+            geo {
+                lat
+                lng
+            }
+        }
+        company {
+            name
+            catchPhrase
+            email
+            website
+        address {
+            street
+            suite
+            city
+            zip
+        geo {
+            lat
+            lng
+        }
+       }
+      }
+     }
+   }
+}`,
+};
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+    method:  <span class="hljs-string">"POST"</span>,
+    headers: {
+    Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.<span class="hljs-keyword">then</span>((response) =&gt;  response.json())
+.<span class="hljs-keyword">then</span>((json) =&gt;  console.log(json));
+</code></pre>
+        <h2 id="get-single-user">Get single user</h2>
+        <pre><code>const  graphqlQuery  = {
+query:  `
+{
+ getUser(id: <span class="hljs-number">55</span>){
+        id
+        name
+        email
+        username
+        avatar
+        phone
+        address {
+            street
+            suite
+            city    
+            zip
+            geo {
+                lat
+                lng
+            }
+        }
+        company {
+            name
+            catchPhrase
+            email
+            website
+        address {
+            street
+            suite
+            city
+            zip
+        geo {
+            lat
+            lng
+        }
+       }
+      }
+   }
+}`,
+};
+
+fetch(<span class="hljs-string">"https://json-graphql-endpoint.herokuapp.com/graphql"</span>, {
+    method:  <span class="hljs-string">"POST"</span>,
+    headers: {
+    Accept:  <span class="hljs-string">"application/json"</span>,
+        <span class="hljs-string">"Content-Type"</span>:  <span class="hljs-string">"application/json"</span>,
+    },
+    body:  JSON.stringify(graphqlQuery),
+})
+.<span class="hljs-keyword">then</span>((response) =&gt;  response.json())
+.<span class="hljs-keyword">then</span>((json) =&gt;  console.log(json));
+</code></pre>
+    </center>
+</body>
+
+</html>

@@ -17,7 +17,8 @@ const app = express();
 app.use(compression());
 app.use(cors());
 app.use(bodyParser.json());
-
+app.use(express.static('static'));
+app.use('/', express.static('index.html'));
 //Implement Routes
 app.use(
   "/graphql",
